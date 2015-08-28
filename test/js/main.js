@@ -1,32 +1,10 @@
-// table part
-var garageTable = ezTable({
-  headers: {
-    car:   {
-      title:   'Car Information',
-      onPrint: function (o) {
-        return [o.car.brand, o.car.model, o.car.year].join(" ");
-      }
-    },
-    owner: {
-      title:   'Owner Information',
-      onPrint: function (o) {
-        return o.owner.name;
-      }
-    },
-    date:  {
-      title: 'Garage In'
-    }
-  }
-});
-
-
 var garage = [
   {
     id:    1,
     car:   {
       brand: "Toyota",
       model: "Corolla",
-      year:  2014,
+      year:  2014
     },
     owner: {
       id:   1,
@@ -40,7 +18,7 @@ var garage = [
     car:   {
       brand: "Toyota",
       model: "Verso",
-      year:  2015,
+      year:  2015
     },
     owner: {
       id:   2,
@@ -53,3 +31,4 @@ var garage = [
 // generate part
 garageTable.bind("garageTable"); // bind the table
 garageTable.load(garage); // load objects (clears old ones if exists)
+garageTable.render(); // clears table if exists, then put rows
