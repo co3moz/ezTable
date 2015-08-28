@@ -1,13 +1,15 @@
 ezTable
 ===========
 
-Yet another table generator library. Simple and expandable design. Automatic search, sort, edit handlers. Easy button handle. 
+Yet another table generator library. Simple and expandable design. Automatic search, sort, edit handlers. Easy button handle.
 
 installation
 ---------------
 
-* Download the ezTable.
+1. Download the ezTable.
 
-```
-here links for you
-```
+> **Note:**
+> Here some links
+> [Compressed Version](http://)
+
+> [Non-Compressed Version](http://)

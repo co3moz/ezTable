@@ -13,13 +13,24 @@ window.garageTable = ezTable({
       }
     },
     date:  {
-      title: 'Garage In'
+      title: 'Garage In',
+
+      onPrint: function (o) {
+        return [o.date.getDate(), o.date.getMonth() + 1, o.date.getFullYear()].join("/") + ' ' + [o.date.getHours(), o.date.getMinutes()].join(":");
+      }
     },
 
     buttons: {
-      title: ''
+      title: 'Controls'
     }
   },
+
+  buttons: [
+    {
+      title: 'delete',
+      icon: 'assets/img/delete.png'
+    }
+  ],
 
   controls: {}
 });
