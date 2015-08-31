@@ -7,6 +7,10 @@ window.garageTable = ezTable({
       },
       style: {
         backgroundColor: "red"
+      },
+
+      rowStyle: {
+        backgroundColor: "blue"
       }
     },
     owner: {

@@ -123,6 +123,11 @@
         return false;
       },
 
+
+      /**
+       * Adds item to item list. if you rendered before, it renders again
+       * @param item which item will be added
+       */
       add: function (item) {
         if (!builder.items) {
           builder.items = [item];
@@ -132,6 +137,7 @@
           this.render();
         }
       },
+
 
       /**
        * Clears items.
@@ -148,6 +154,7 @@
         builder.items = [];
         return true;
       },
+
 
       /**
        * Renders to bound element
@@ -171,6 +178,11 @@
 
         builder.render = false; // render complete?
 
+
+        /*
+         * Header creation
+         */
+
         var theadElement = document.createElement("thead"); // create thead
 
         headers.forEach(function (head) { // create headers
@@ -188,8 +200,11 @@
 
           theadElement.appendChild(thElement);
         });
-        builder.el.appendChild(theadElement);
 
+
+        /*
+         * Body creation
+         */
 
         var tbodyElement = document.createElement("tbody"); // create tbody
 
@@ -201,6 +216,10 @@
             var header = builder.headers[headerName]; // create alias of header object
 
             var tdElement = document.createElement("td"); // create column
+
+            /*
+             * Button creation
+             */
 
             if (headerName == "buttons") { // if header is buttons
               var buttonTableElement = document.createElement("table"); // create table for buttons
@@ -230,11 +249,22 @@
               });
 
               tdElement.appendChild(buttonTableElement);
-            } else { // if
+            } else {
+
+              /*
+               * Text data creation
+               */
+
               if (header.onPrint) {
                 tdElement.innerText = header.onPrint(item);
               } else {
                 tdElement.innerText = item[headerName];
+              }
+
+              if (header.rowStyle) {
+                Object.getOwnPropertyNames(header.rowStyle).forEach(function (styleName) {
+                  tdElement.style[styleName] = header.rowStyle[styleName];
+                });
               }
             }
 
@@ -244,6 +274,8 @@
           tbodyElement.appendChild(trElement);
         });
 
+        // append things.
+        builder.el.appendChild(theadElement);
         builder.el.appendChild(tbodyElement);
         builder.el.tbodyElement = tbodyElement;
         builder.render = true;
