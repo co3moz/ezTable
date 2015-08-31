@@ -4,31 +4,35 @@ ezTable
 Yet another table generator library. Simple and expandable design. Automatic search, sort, edit handlers. Easy button handle.
 
 
-- [ezTable
-](#eztable)
-  - [installation
+content
+---------------
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [installation
 ](#installation)
-  - [instructions
+- [instructions
 ](#instructions)
-      - [creating](#creating)
-      - [binding](#binding)
-      - [loading](#loading)
-        - [load from api](#load-from-api)
-        - [load from array](#load-from-array)
-      - [rendering](#rendering)
-  - [code reference
+    - [creating](#creating)
+    - [binding](#binding)
+    - [loading](#loading)
+      - [load from api](#load-from-api)
+      - [load from array](#load-from-array)
+    - [rendering](#rendering)
+- [code reference
 ](#code-reference)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 installation
 ---------------
 
 1. Download the ezTable.
 
-> **Links:**
-
-> [Compressed Version](http://)
-
-> [Non-Compressed Version](http://)
+> **Links:** <br>
+> * [Compressed Version](http://)
+> * [Non-Compressed Version](http://)
 
 
 instructions
