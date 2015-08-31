@@ -28,9 +28,14 @@ window.garageTable = ezTable({
   buttons: [
     {
       title: 'delete',
-      icon: 'assets/img/delete.png'
-    }
-  ],
+      icon: 'assets/img/delete.png',
+      onClick: function(o, e) {
+        console.log(o, e);
+      }
+    },
 
-  controls: {}
+    {
+      title: '>'
+    }
+  ]
 });

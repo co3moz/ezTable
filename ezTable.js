@@ -44,61 +44,81 @@
       },
 
       render: function () {
-        if (builder.items == null) {
+        if (builder == null) {  // check for null
+          throw new Error("Builder can't be null");
+        }
+
+        if (builder.items == null) { // check items for null
           throw new Error("You didn't load any item");
         }
 
-        if(builder.el == null) {
+        if(builder.el == null) { // check element for null
           throw new Error("You didn't bind any element");
         }
 
-        // clear the children
-        while (builder.el.firstChild) {
+        while (builder.el.firstChild) { // clear the children
           builder.el.removeChild(builder.el.firstChild);
         }
 
-        // create thead
-        var thead = document.createElement("thead");
+        var theadElement = document.createElement("thead"); // create thead
 
-        // create headers
-        headers.forEach(function(head) {
+        headers.forEach(function(head) { // create headers
           var header = builder.headers[head];
 
-          var th = document.createElement("th");
-          th.innerText = header.title || head;
-          thead.appendChild(th);
+          var thElement = document.createElement("th");
+          thElement.innerText = header.title || head;
+          theadElement.appendChild(thElement);
         });
-        builder.el.appendChild(thead);
+        builder.el.appendChild(theadElement);
 
-        // create tbody
-        var tbody = document.createElement("tbody");
 
-        // create elements
-        builder.items.forEach(function (item) {
-          // create row
-          var tr = document.createElement("tr");
+        var tbodyElement = document.createElement("tbody"); // create tbody
 
-          // for each header
-          headers.forEach(function(headerName) {
-            // create alias of header object
-            var header = builder.headers[headerName];
-            
-            // create column
-            var td = document.createElement("td");
+        builder.items.forEach(function (item) { // create elements
+          var trElement = document.createElement("tr"); // create row
 
-            if(header.onPrint) {
-              td.innerText = header.onPrint(item);
-            } else {
-              td.innerText = item[headerName];
+          headers.forEach(function(headerName) {  // for each header
+            var header = builder.headers[headerName]; // create alias of header object
+
+            var tdElement = document.createElement("td"); // create column
+
+            if(headerName == "buttons") { // if header is buttons
+              builder.buttons.forEach(function(button) { // for each button in builder
+                var buttonElement = document.createElement("button"); // create button
+
+                if(button.icon) { // if icon defined
+                  buttonElement.innerHTML = '<img src="{0}">'.replace("{0}", button.icon); // print icon
+                } else if(button.title) { // if title defined
+                  buttonElement.innerText = button.title; // print title
+                } else { // if both are empty then
+                  button.innerText = "&nbsp;"; // print space
+                }
+
+                if(button.onClick) { // if onClick defined
+                  buttonElement.onclick = function(e) { // bind the event
+                    button.onClick(item, e);
+                  };
+                }
+
+                tdElement.appendChild(buttonElement);
+              });
+            } else { // if
+              if(header.onPrint) {
+                tdElement.innerText = header.onPrint(item);
+              } else {
+                tdElement.innerText = item[headerName];
+              }
             }
 
-            tr.appendChild(td);
+
+
+            trElement.appendChild(tdElement);
           });
 
-          tbody.appendChild(tr);
+          tbodyElement.appendChild(trElement);
         });
 
-        builder.el.appendChild(tbody);
+        builder.el.appendChild(tbodyElement);
       }
     }
   }
