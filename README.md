@@ -18,7 +18,7 @@ installation
 instructions
 -----------------------
 
-#### create a object that holds information about table.
+#### • create a object that holds information about table.
 
 ```javascript
 var garageTable = ezTable({
@@ -68,7 +68,7 @@ var garageTable = ezTable({
 });
 ```
 
-#### bind some element to garageTable
+#### • bind some element to garageTable
 
 ```html
 <div>
@@ -83,10 +83,10 @@ garageTable.bind("garageTable");
 // garageTable.bind(document.getElementsByTagName("table")[0]);
 ```
 
-#### load the data
+#### • load the data
 
 
-##### load from api
+##### - load from api
 
 ```javascript
 garageTable.load({
@@ -98,7 +98,7 @@ garageTable.load({
 });
 ```
 
-##### load from array
+##### - load from array
 ```javascript
 var data = [
   {
