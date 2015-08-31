@@ -51,7 +51,8 @@
        *  data: "name=hey&surname=you", // or FormData etc..
        *  onLoad: function() {
        *    console.log("loaded!");
-       *  }
+       *  },
+       *  swear: true, // don't check responseType
        * });
        */
       load: function (items) {
@@ -65,14 +66,19 @@
           var xmlHttpRequest = new XMLHttpRequest(); // create ajax request
           xmlHttpRequest.onreadystatechange = function () { // when request changes
             if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) { // when request complete
-              if (xmlHttpRequest.responseType == "application/json") { // if request's content-type is application/json
+              if (items.swear || xmlHttpRequest.getResponseHeader("content-type") == "application/json") { // if request's content-type is application/json
                 var data = JSON.parse(xmlHttpRequest.responseText);  // parse response
+
+                that.reload = function() {
+                  that.load(items);
+                };
+
+                that.load(data); // then load the data
 
                 if (items.onLoad) { // if onLoad property is exists
                   items.onLoad(data, xmlHttpRequest); // call it with data and xmlHttpRequest
                 }
 
-                that.load(data); // then load the data
               } else { // if request's content-type isn't application/json then
                 throw new Error("Only application/json supported!"); // throw some error
               }
@@ -145,7 +151,7 @@
        */
       clear: function () {
         if (builder.items) {
-          while (builder.pop()) {
+          while (builder.items.pop()) {
             // remove every element from list.
           }
           return builder.items.length == 0;
@@ -197,7 +203,6 @@
             });
           }
 
-
           theadElement.appendChild(thElement);
         });
 
@@ -244,6 +249,12 @@
                   };
                 }
 
+                if (button.style) { // if style defined
+                  Object.getOwnPropertyNames(button.style).forEach(function (styleName) {
+                    buttonElement.style[styleName] = button.style[styleName];
+                  });
+                }
+
                 buttonTdElement.appendChild(buttonElement);
                 buttonTableElement.appendChild(buttonTdElement);
               });
@@ -285,14 +296,16 @@
 
   /* BROWSER INTEGRATION */
   if (typeof window !== "undefined") {
-    return window.ezTable = ezTable;
+    window.ezTable = ezTable;
   }
 
   if (typeof module.exports !== "undefined") {
-    return module.exports = ezTable;
+    module.exports = ezTable;
   }
 
-  define(function () {
-    return ezTable;
-  });
+  if(typeof define !== "undefined") {
+    define(function () {
+      return ezTable;
+    });
+  }
 })();

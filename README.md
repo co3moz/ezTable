@@ -22,6 +22,17 @@ content
     - [rendering](#rendering)
 - [code reference
 ](#code-reference)
+    - [headers](#headers)
+      - [title](#title)
+      - [style](#style)
+      - [rowStyle](#rowstyle)
+      - [onPrint](#onprint)
+      - [*buttons](#buttons)
+    - [buttons](#buttons)
+      - [title](#title-1)
+      - [style](#style-1)
+      - [icon](#icon)
+      - [onClick](#onclick)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -30,7 +41,7 @@ installation
 
 1. Download the ezTable.
 
-> **Links:** <br>
+> **Links:**
 > * [Compressed Version](http://)
 > * [Non-Compressed Version](http://)
 
@@ -175,13 +186,82 @@ That's all. Headers, Datas will be rendered in garageTable div.
 code reference
 ------------------
 
-* headers
-	* title
-	* style
-	* rowStyle
-	* onPrint
-	* *buttons
-* buttons
-	* title
-	* icon
-	* onClick
+#### headers
+
+We easily define a header with headers section.
+> **Note:** Headers can't be empty or null
+
+```javascript
+ezTable({
+	headers: {
+		...
+	}
+});
+```
+
+In header, we define properties as same as our data.  Let's examine this code.
+
+```javascript
+var table = ezTable({
+	headers: {
+		id: {
+			
+		}
+	}
+});
+table.bind("test");
+table.load({id: 1});
+table.render();
+```
+generates this dom,
+```html
+<table>
+	<thead>
+		<th>id</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td>
+		</tr>
+	</tbody>
+</table>
+```
+
+##### title
+We use this option, when we want to specify a name for header. Let's look.
+```javascript
+var table = ezTable({
+	headers: {
+		id: {
+			title: 'identity'
+		}
+	}
+});
+table.bind("test");
+table.load({id: 1});
+table.render();
+```
+generates this dom,
+```html
+<table>
+	<thead>
+		<th>identity</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td>
+		</tr>
+	</tbody>
+</table>
+```
+##### style
+##### rowStyle
+##### onPrint
+##### *buttons
+
+
+#### buttons
+##### title
+##### style
+##### icon
+##### onClick
