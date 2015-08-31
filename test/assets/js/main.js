@@ -21,8 +21,8 @@ var garage = [
       year:  2015
     },
     owner: {
-      id:   2,
-      name: "Sadettin YAVUZ"
+      id:   -1,
+      name: "Unknown Customer"
     },
     date:  new Date("2015-08-28 14:34")
   }

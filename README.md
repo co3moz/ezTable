@@ -3,13 +3,29 @@ ezTable
 
 Yet another table generator library. Simple and expandable design. Automatic search, sort, edit handlers. Easy button handle.
 
+
+- [ezTable
+](#eztable)
+  - [installation
+](#installation)
+  - [instructions
+](#instructions)
+      - [creating](#creating)
+      - [binding](#binding)
+      - [loading](#loading)
+        - [load from api](#load-from-api)
+        - [load from array](#load-from-array)
+      - [rendering](#rendering)
+  - [code reference
+](#code-reference)
+
 installation
 ---------------
 
 1. Download the ezTable.
 
-> **Note:**
-> Here some links
+> **Links:**
+
 > [Compressed Version](http://)
 
 > [Non-Compressed Version](http://)
@@ -18,8 +34,8 @@ installation
 instructions
 -----------------------
 
-#### • create a object that holds information about table.
-
+#### creating
+create a object that holds information about table.
 ```javascript
 var garageTable = ezTable({
   headers: {
@@ -68,8 +84,12 @@ var garageTable = ezTable({
 });
 ```
 
-#### • bind some element to garageTable
+_____________
 
+#### binding
+ 
+ bind some element to garageTable
+ 
 ```html
 <div>
     <table id="garageTable">
@@ -82,11 +102,15 @@ garageTable.bind("garageTable");
 // garageTable.bind(document.getElementById("garageTable"));
 // garageTable.bind(document.getElementsByTagName("table")[0]);
 ```
+_____________
 
-#### • load the data
+#### loading
 
+You can load from api or array. It's your choice.
 
-##### - load from api
+##### load from api
+
+> **Note:** api must return application/json.
 
 ```javascript
 garageTable.load({
@@ -97,8 +121,8 @@ garageTable.load({
   }
 });
 ```
+##### load from array
 
-##### - load from array
 ```javascript
 var data = [
   {
@@ -132,4 +156,28 @@ var data = [
 
 garageTable.load(data);
 ```
+_____________
 
+#### rendering
+
+Just type
+
+```javascript
+garageTable.render();
+```
+
+That's all. Headers, Datas will be rendered in garageTable div.
+
+code reference
+------------------
+
+* headers
+	* title
+	* style
+	* rowStyle
+	* onPrint
+	* *buttons
+* buttons
+	* title
+	* icon
+	* onClick
