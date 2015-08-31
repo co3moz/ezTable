@@ -2,7 +2,30 @@
     position: fixed;
     left: 50%;
     top: 50%;
+    width: 600px;
 
     transform: translateX(-50%) translateY(-50%);
     border: 1px blue solid;
+}
+
+#garageTable th {
+    border: 1px solid #6ac2ff;
+}
+
+#garageTable  tr > td {
+    border-left: 1px solid black;
+}
+
+#garageTable tr:nth-of-type(even) {
+    background-color: #e7f1e6;
+}
+
+#garageTable tr:hover {
+    background-color: #d3d4d2;
+}
+
+
+#garageTable button {
+    border: 0;
+    background: transparent;
 }

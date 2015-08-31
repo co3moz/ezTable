@@ -32,3 +32,10 @@ var garage = [
 garageTable.bind("garageTable"); // bind the table
 garageTable.load(garage); // load objects (clears old ones if exists)
 garageTable.render(); // clears table if exists, then put rows
+/*
+
+garageTable.load({
+  url: "api/garage/all",
+  method: "GET"
+});
+ */

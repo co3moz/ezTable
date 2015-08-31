@@ -4,6 +4,9 @@ window.garageTable = ezTable({
       title:   'Car Information',
       onPrint: function (o) {
         return [o.car.brand, o.car.model, o.car.year].join(" ");
+      },
+      style: {
+        backgroundColor: "red"
       }
     },
     owner: {
@@ -30,12 +33,17 @@ window.garageTable = ezTable({
       title: 'delete',
       icon: 'assets/img/delete.png',
       onClick: function(o, e) {
-        console.log(o, e);
+        alert(o.owner.name);
       }
     },
 
     {
-      title: '>'
+      title: 'go',
+      icon: 'assets/img/go.png',
+      onClick: function(o) {
+        console.log(o.owner.name);
+        garageTable.remove(o);
+      }
     }
   ]
 });
