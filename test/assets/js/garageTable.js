@@ -1,3 +1,33 @@
+var localData = [
+  {
+    "id": 1,
+    "car": {
+      "brand": "Toyota",
+      "model": "Corolla",
+      "year": 2014
+    },
+    "owner": {
+      "id": 1,
+      "name": "Doğan DERYA"
+    },
+    "date": "2015-08-27 10:04"
+  },
+
+  {
+    "id": 2,
+    "car": {
+      "brand": "Toyota",
+      "model": "Verso",
+      "year": 2015
+    },
+    "owner": {
+      "id": 1,
+      "name": "Doğan DERYA"
+    },
+    "date": "2015-08-28 20:04"
+  }
+];
+
 var garageTable = ezTable({
   headers: {
     car:   {
@@ -40,14 +70,13 @@ var garageTable = ezTable({
     title:   'delete',
     icon:    'assets/img/delete.png',
     onClick: function (o, e) {
-      alert(o.owner.name);
+      garageTable.remove(o);
     }
   }, {
     title:   'go',
     icon:    'assets/img/go.png',
     onClick: function (o) {
-      console.log(o.owner.name);
-      garageTable.remove(o);
+      alert(o.owner.name);
     }
   },
     {title: 'Hey!', icon:    'assets/img/go.png'}]
@@ -55,6 +84,9 @@ var garageTable = ezTable({
 
 // generate part
 garageTable.bind("garageTable"); // bind the table
+/*
+yes, u can!
+
 garageTable.load({
   url:    "assets/data.json",
   method: "GET",
@@ -65,6 +97,9 @@ garageTable.load({
     garageTable.render();
   }
 });
+*/
+garageTable.load(localData);
+garageTable.render();
 
 window.x = garageTable;
 
