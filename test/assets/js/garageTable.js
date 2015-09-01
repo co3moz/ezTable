@@ -49,7 +49,8 @@ var garageTable = ezTable({
       console.log(o.owner.name);
       garageTable.remove(o);
     }
-  }]
+  },
+    {title: 'Hey!', icon:    'assets/img/go.png'}]
 });
 
 // generate part

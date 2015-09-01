@@ -69,7 +69,7 @@
               if (items.swear || xmlHttpRequest.getResponseHeader("content-type") == "application/json") { // if request's content-type is application/json
                 var data = JSON.parse(xmlHttpRequest.responseText);  // parse response
 
-                that.reload = function() {
+                that.reload = function () {
                   that.load(items);
                 };
 
@@ -229,35 +229,37 @@
             if (headerName == "buttons") { // if header is buttons
               var buttonTableElement = document.createElement("table"); // create table for buttons
 
-              builder.buttons.forEach(function (button) { // for each button in builder
-                var buttonTdElement = document.createElement("td"); // create column
+              if (builder.buttons) {
+                builder.buttons.forEach(function (button) { // for each button in builder
+                  var buttonTdElement = document.createElement("td"); // create column
 
-                var buttonElement = document.createElement("button"); // create button
+                  var buttonElement = document.createElement("button"); // create button
 
-                if (button.icon) { // if icon defined
-                  buttonElement.innerHTML = '<img src="{0}">'.replace("{0}", button.icon); // print icon
-                  buttonElement.title = button.title; // over text
-                } else if (button.title) { // if title defined
-                  buttonElement.innerText = button.title; // print title
-                } else { // if both are empty then
-                  button.innerText = "&nbsp;"; // print space
-                }
+                  if (button.icon) { // if icon defined
+                    buttonElement.innerHTML = '<img src="{0}">'.replace("{0}", button.icon); // print icon
+                    buttonElement.title = button.title; // over text
+                  } else if (button.title) { // if title defined
+                    buttonElement.innerText = button.title; // print title
+                  } else { // if both are empty then
+                    button.innerText = "&nbsp;"; // print space
+                  }
 
-                if (button.onClick) { // if onClick defined
-                  buttonElement.onclick = function (e) { // bind the event
-                    button.onClick(item, e);
-                  };
-                }
+                  if (button.onClick) { // if onClick defined
+                    buttonElement.onclick = function (e) { // bind the event
+                      button.onClick(item, e);
+                    };
+                  }
 
-                if (button.style) { // if style defined
-                  Object.getOwnPropertyNames(button.style).forEach(function (styleName) {
-                    buttonElement.style[styleName] = button.style[styleName];
-                  });
-                }
+                  if (button.style) { // if style defined
+                    Object.getOwnPropertyNames(button.style).forEach(function (styleName) {
+                      buttonElement.style[styleName] = button.style[styleName];
+                    });
+                  }
 
-                buttonTdElement.appendChild(buttonElement);
-                buttonTableElement.appendChild(buttonTdElement);
-              });
+                  buttonTdElement.appendChild(buttonElement);
+                  buttonTableElement.appendChild(buttonTdElement);
+                });
+              }
 
               tdElement.appendChild(buttonTableElement);
             } else {
@@ -299,11 +301,11 @@
     window.ezTable = ezTable;
   }
 
-  if (typeof module.exports !== "undefined") {
+  if (typeof module !== "undefined") {
     module.exports = ezTable;
   }
 
-  if(typeof define !== "undefined") {
+  if (typeof define !== "undefined") {
     define(function () {
       return ezTable;
     });
