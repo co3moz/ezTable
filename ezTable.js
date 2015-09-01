@@ -37,11 +37,13 @@
        * @example
        * load([{..}, {..}]);
        *
+       * @example
        * load({
        *  url: "http::...",
        *  method: "GET"
        * });
        *
+       * @example
        * load({
        *  url: "http...",
        *  method: "POST",
