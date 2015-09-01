@@ -1,41 +1,41 @@
 var localData = [
   {
-    "id": 1,
-    "car": {
+    "id":    1,
+    "car":   {
       "brand": "Toyota",
       "model": "Corolla",
-      "year": 2014
+      "year":  2014
     },
     "owner": {
-      "id": 1,
+      "id":   1,
       "name": "Doğan DERYA"
     },
-    "date": "2015-08-27 10:04"
+    "date":  "2015-08-27 10:04"
   },
 
   {
-    "id": 2,
-    "car": {
+    "id":    2,
+    "car":   {
       "brand": "Toyota",
       "model": "Verso",
-      "year": 2015
+      "year":  2015
     },
     "owner": {
-      "id": 1,
+      "id":   1,
       "name": "Doğan DERYA"
     },
-    "date": "2015-08-28 20:04"
+    "date":  "2015-08-28 20:04"
   }
 ];
 
-var garageTable = ezTable({
+var garageTable = new ezTable({
   headers: {
-    car: {
-      title: 'Car Information',
+    car:   {
+      title:   'Car Information',
       onPrint: function (o) {
         return [o.car.brand, o.car.model, o.car.year].join(" ");
       },
-      style: {
+      style:   {
         backgroundColor: "red"
       },
 
@@ -44,12 +44,12 @@ var garageTable = ezTable({
       }
     },
     owner: {
-      title: 'Owner Information',
+      title:   'Owner Information',
       onPrint: function (o) {
         return o.owner.name;
       }
     },
-    date: {
+    date:  {
       title: 'Garage In',
 
       onPrint: function (o) {
@@ -66,39 +66,40 @@ var garageTable = ezTable({
     }
   },
 
-  buttons: [{
-    title: 'delete',
-    icon: 'assets/img/delete.png',
-    onClick: function (o, e) {
-      garageTable.remove(o);
+  buttons: [
+    {
+      title:   'delete',
+      icon:    'assets/img/delete.png',
+      onClick: function (o, e) {
+        garageTable.remove(o);
+      }
+    },
+
+    {
+      title:   'go',
+      icon:    'assets/img/go.png',
+      onClick: function (o) {
+        alert(o.owner.name);
+      }
     }
-  }, {
-    title: 'go',
-    icon: 'assets/img/go.png',
-    onClick: function (o) {
-      alert(o.owner.name);
-    }
-  },
-    {title: 'Hey!', icon: 'assets/img/go.png'}]
+  ]
 });
 
 // generate part
 garageTable.bind("garageTable"); // bind the table
 /*
-  yes, u can!
+ yes, u can!
 
-  garageTable.load({
-    url:    "assets/data.json",
-    method: "GET",
-    swear:  false,
+ garageTable.load({
+   url:    "assets/data.json",
+   method: "GET",
+   swear:  false,
 
-    onLoad: function () {
-      console.log("data.json loaded");
-      garageTable.render();
-    }
+   onLoad: function () {
+     console.log("data.json loaded");
+     garageTable.render();
+   }
  });
-*/
+ */
 garageTable.load(localData);
 garageTable.render();
-
-window.x = garageTable;
