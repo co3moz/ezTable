@@ -1,5 +1,6 @@
 /**
  * ezTable constructor.
+ * 
  * @class
  * @param {Object} builder Table building object
  */
